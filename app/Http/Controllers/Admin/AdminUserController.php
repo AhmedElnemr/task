@@ -137,8 +137,10 @@ class AdminUserController extends Controller
         $data = $this->validate($request, [
             'username' => ['required', 'string', 'max:255'], //  required | string|max:255
             'phone_number' => ['required', 'numeric'], //  required | numeric | unique
-            'password' => ['nullable'], //  required | numeric | unique
         ]);
+        if ($request->password){
+            $data['password'] = Hash::make($request->password);
+        }
         $user->update($data);
         return response()->json(1, 200);
     }

@@ -312,6 +312,7 @@
                     datatable_selector.draw();
                 },
                 error: function (data) {
+                    console.log(data)
                     $('.loader-ajax').hide()
 
                     if (data.status === 500) {
